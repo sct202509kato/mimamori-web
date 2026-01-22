@@ -1,4 +1,5 @@
 ## 🛡 今日も無事？（見守りチェックインアプリ）
+<img width="547" height="366" alt="スクリーンショット 2026-01-22 210531" src="https://github.com/user-attachments/assets/29a3f372-de35-4dfb-9336-a1d63261ff64" />
 
 家族や大切な人が「今日も無事」であることを、
 
