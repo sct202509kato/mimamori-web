@@ -1,73 +1,44 @@
-# React + TypeScript + Vite
+🛡 今日も無事？（見守りチェックインアプリ）
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+家族や大切な人が「今日も無事」であることを、
+1日1回ボタンを押すだけで確認できる Web アプリです。
 
-Currently, two official plugins are available:
+🔗 デモ
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Web アプリ（本番）：
+https://mimamori-web-ten.vercel.app
 
-## React Compiler
+💡 主な機能
+メールアドレス / パスワードによるログイン
+「今日も無事」ボタンによるチェックイン
+当日分の二重登録防止
+今日の状態（確認済み / 未確認）の表示
+JST（日本時間）基準での日付管理
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🧱 技術構成
+フロントエンド
+React + TypeScript（Vite）
+Vercel にデプロイ
 
-## Expanding the ESLint configuration
+バックエンド
+Firebase
+Authentication（メール / パスワード）
+Cloud Functions（HTTP API）
+Firestore
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🗂 データ設計
+users/{uid}/checkins/{YYYY-MM-DD}
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+日付キーは サーバー側で生成（JST）
+すでに存在する場合は再登録せず、状態のみ返却
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+🔐 セキュリティ / 工夫点
+Firebase Auth の ID トークンを使った API 認証
+Cloud Functions 側でトークン検証
+CORS を本番ドメインのみに限定
+ローカル / 本番で API URL を環境変数で切り替え
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+🚀 今後の改善予定
+見守り側（家族）用の一覧画面
+未チェック時の通知（メール / Push）
+デザインの改善
