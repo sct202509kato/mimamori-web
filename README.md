@@ -4,9 +4,9 @@
 
 1日1回ボタンを押すだけで確認できる Web アプリです。
 
-🔗 デモ
+## 🔗 デモ
 
-## Web アプリ（本番）：
+Web アプリ（本番）：
 https://mimamori-web-ten.vercel.app
 
 ## 💡 主な機能
