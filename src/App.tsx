@@ -6,11 +6,14 @@ import {
 } from "firebase/auth";
 import { auth } from "./firebase";
 
-const STATUS_URL =
-    "http://127.0.0.1:5001/mimamori-4b3a8/us-central1/status";
+const API_BASE = import.meta.env.VITE_API_BASE as string;
 
-const CHECKIN_URL =
-    "http://127.0.0.1:5001/mimamori-4b3a8/us-central1/checkin";
+if (!API_BASE) {
+    throw new Error("VITE_API_BASE is not set. Check .env.local or Vercel env vars.");
+}
+
+const STATUS_URL = `${API_BASE}/status`;
+const CHECKIN_URL = `${API_BASE}/checkin`;
 
 export default function App() {
     const [email, setEmail] = useState("");
