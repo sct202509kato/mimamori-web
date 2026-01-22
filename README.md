@@ -6,7 +6,8 @@
 
 ## 🔗 デモ
 
-Web アプリ（本番）：
+Web アプリ：
+
 https://mimamori-web-ten.vercel.app
 
 ## 💡 主な機能
